@@ -212,6 +212,9 @@ impl PvpnConnection {
             local_agent_settings: local_agent_settings.clone(),
             sni_strategy,
         };
+        if let Some(pcap_file_info) = pcap_file_info {
+            ret.start_packet_capture(pcap_file_info);
+        }
         for peer in &ret.peers {
             ret.client.peer_add(peer.as_peer());
         }
@@ -222,9 +225,6 @@ impl PvpnConnection {
                     peers: vec![],
                     wait_reasons: vec!(PeerConnectionWaitReason::WaitingForNetwork)
                 })
-        }
-        if let Some(pcap_file_info) = pcap_file_info {
-            ret.start_packet_capture(pcap_file_info);
         }
         #[cfg(feature = "local-agent")]
         if let Some(local_agent_settings) = local_agent_settings {
