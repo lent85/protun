@@ -351,7 +351,11 @@ pub struct PeerInfo {
     pub priority: i32,
 
     #[cfg(feature = "local-agent")]
-    pub exit_label: Option<String>
+    pub exit_label: Option<String>,
+
+    /// Optional DNS/host name of the server.
+    #[cfg(feature = "local-agent")]
+    pub server_name: Option<String>,
 }
 
 #[cfg_attr(feature = "uniffi", derive(uniffi::Record))]

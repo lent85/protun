@@ -31,6 +31,7 @@ use crate::api::connection::{ConnectionMode, FileWriteMode, InitialConnectionCon
 /// [peer.server1]
 /// server_ip=1.2.3.4
 /// server_public_key=base64encodedpublickey==
+/// server_name=server1.example.com
 /// udp_ports=51820,443
 /// tcp_ports=443,80
 /// tls_ports=443
@@ -151,6 +152,7 @@ fn parse_ini_peers(ini_config: &HashMap<String, HashMap<String, Option<String>>>
             let tls_ports = section_fields.get("tls_ports").cloned().flatten().map(|s| parse_ports(&s)).unwrap_or_default();
             let priority = section_fields["priority"].clone().map(|s| s.parse().unwrap()).unwrap_or(0);
             let exit_label = section_fields.get("exit_label").cloned().flatten();
+            let server_name = section_fields.get("server_name").cloned().flatten();
             peers.push(PeerInfo {
                 peer_id,
                 server_ip,
@@ -160,6 +162,7 @@ fn parse_ini_peers(ini_config: &HashMap<String, HashMap<String, Option<String>>>
                 tls_ports,
                 priority,
                 exit_label,
+                server_name,
             })
         }
     });

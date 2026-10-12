@@ -315,6 +315,7 @@ pub(crate) fn create_udp_peer(id: u8) -> (std::net::UdpSocket, PeerInfo) {
         priority: 0,
         #[cfg(feature = "local-agent")]
         exit_label: None,
+        server_name: None,
     })
 }
 
@@ -331,6 +332,7 @@ pub(crate) fn create_tcp_peer(ip: &str, id: u8) -> (std::net::TcpListener, PeerI
         priority: 0,
         #[cfg(feature = "local-agent")]
         exit_label: None,
+        server_name: None,
     })
 }
 

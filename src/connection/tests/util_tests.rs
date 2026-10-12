@@ -112,5 +112,6 @@ fn peer_with_id(ip: &str, priority: i32, id: String) -> PeerInfo {
         priority,
         #[cfg(feature = "local-agent")]
         exit_label: None,
+        server_name: None,
     }
 }
