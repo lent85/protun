@@ -42,6 +42,7 @@ data class VpnConfig(
     val localAgentMode: Boolean,
     val username: String,
     val password: String,
+    val serverName: String,
 ) {
     fun toInitialConfig(): InitialConfig {
         val ports = mapOf(
@@ -68,6 +69,7 @@ data class VpnConfig(
                     priority = 0,
                     ports = ports,
                     exitLabel = exitLabel,
+                    serverName = serverName.takeIf { it.isNotBlank() },
                 )
             ),
             sniStrategy = SniStrategy.Random,

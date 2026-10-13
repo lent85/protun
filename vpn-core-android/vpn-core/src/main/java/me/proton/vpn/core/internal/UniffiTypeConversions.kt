@@ -75,6 +75,7 @@ fun List<Peer>.toUniFFI(): List<PeerInfo> = map { peer ->
         tlsPorts = peer.ports[VpnProtocol.Stealth]?.map { it.toUShort() } ?: emptyList(),
         priority = peer.priority,
         exitLabel = peer.exitLabel,
+        serverName = peer.serverName,
     )
 }
 

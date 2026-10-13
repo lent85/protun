@@ -58,6 +58,11 @@ data class Peer(
      * Label of the exit node to be passed to the local agent.
      */
     val exitLabel: String?,
+
+    /**
+     * Optional hostname of the server that local agent connection will use as SNI.
+     */
+    val serverName: String?,
 ): Parcelable
 
 @Parcelize

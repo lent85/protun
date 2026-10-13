@@ -77,6 +77,7 @@ fun MainScreen(
     var isLocalAgentMode by rememberSaveable { mutableStateOf(false) }
     var user by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
+    var serverName by rememberSaveable { mutableStateOf("") }
 
     LaunchedEffect(Unit) {
         val initialConfig = viewModel.lastConfig.first()
@@ -195,6 +196,13 @@ fun MainScreen(
                         label = { Text("Exit label") },
                         modifier = Modifier.fillMaxWidth()
                     )
+
+                    OutlinedTextField(
+                        value = serverName,
+                        onValueChange = { serverName = it },
+                        label = { Text("Server name") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
         }
@@ -249,6 +257,7 @@ fun MainScreen(
                                     localAgentMode = isLocalAgentMode,
                                     username = user.takeIf { isLocalAgentMode }.orEmpty(),
                                     password = password.takeIf { isLocalAgentMode }.orEmpty(),
+                                    serverName = serverName.takeIf { isLocalAgentMode }.orEmpty(),
                                 )
                                 activity.runWithVpnPermission(onError = viewModel::onPermissionError) {
                                     viewModel.connect(cfg)
