@@ -9,3 +9,8 @@ Cargo.lock
 /.vs
 csharp_uniffi_output
 config.ini
+
+# Release / distribution artifacts
+dist/
+*.tar.gz
+*.zip
